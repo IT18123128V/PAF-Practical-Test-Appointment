@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Doctors' Portal</title>
+<title>Appointment' Portal</title>
 <link href="myStyle.css" rel="stylesheet" />
 <link rel="stylesheet" href="Views/bootstrap.min.css">
 <script src="jquery-3.5.0.min.js"></script>
@@ -25,7 +25,7 @@
 		<br> <br>
 		<fieldset>
 
-			<legend>Add Sessions</legend>
+			<legend>Add Appointment</legend>
 			<form method="post" id="DOC"action="Appointment.jsp">
 
 
@@ -33,8 +33,8 @@
 					type="text" class="form-control" name="nic"> <br>
 				Doctor's Specialty&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 					type="text" id="doc_spec" class="form-control" name="doc_spec">
-				 <br> Doctor
-				Doctor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+				 <br> 
+				Doctor's Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 					type="text" id="doctor" class="form-control"
 					name="doctor"> <br>
 
@@ -46,7 +46,7 @@
 				<br> Time&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 					type="time" name="time" class="form-control" id="date" >
 					<br>
-					<br> Doctor
+					<br> 
 				Hospital&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
 					type="text" id="hospital" class="form-control"
 					name="hospital"> <br> 

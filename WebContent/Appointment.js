@@ -113,32 +113,32 @@ function validateItemForm()
 // CODE
 if ($("#nic").val().trim() == "")
  {
- return "Insert NIC.";
+ return "Patient NIC.";
  }
 // NAME
 if ($("#doc_spec").val().trim() == "")
  {
- return "Insert  Doctor Name.";
+ return "Insert  Doctor's Specialty.";
  } 
 //NAME
-if ($("#doc_spec").val().trim() == "")
+if ($("#doctor").val().trim() == "")
  {
- return "Insert  Doctor Name.";
+ return "Insert  Doctor's Name.";
  } 
 //NAME
-if ($("#doc_spec").val().trim() == "")
+if ($("#date").val().trim() == "")
  {
- return "Insert  Doctor Name.";
+ return "Insert  Date.";
  } 
 //NAME
-if ($("#doc_spec").val().trim() == "")
+if ($("#time").val().trim() == "")
  {
- return "Insert  Doctor Name.";
+ return "Insert  Time.";
  } 
 //NAME
-if ($("#doc_spec").val().trim() == "")
+if ($("#hospital").val().trim() == "")
  {
- return "Insert  Doctor Name.";
+ return "Insert Hospital.";
  } 
 
 
