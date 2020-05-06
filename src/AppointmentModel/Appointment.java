@@ -61,13 +61,28 @@ public class Appointment {
 		con.close();
 		System.out.println("inserted");
 		Output = "Inserted successfully"; 
+		String newDOC = readSession();
+		 Output = "{\"status\":\"success\", \"data\": \"" +newDOC + "\"}"; 
 	} catch (Exception e) {
-		e.printStackTrace();
-		System.out.println(" not inserted");
+//		e.printStackTrace();
+//		System.out.println(" not inserted");
+		Output = "{\"status\":\"error\", \"data\":\"Error while inserting the Appointment.\"}";
+				 System.err.println(e.getMessage()); 
 	}
-
 	return Output;
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	public String deleteSession(String nic)
 	{
 		String output="";
@@ -89,14 +104,21 @@ public class Appointment {
 			connection.close();
 			
 			output= "deleted successfully";
+			String newDOC = readSession();
+			output = "{\"status\":\"success\", \"data\": \"" +newDOC + "\"}"; 
 		}
 		catch(Exception e)
 		{
 			output="error while deleting the Doctor";
-			System.err.println(e.getMessage());
+			output = "{\"status\":\"error\", \"data\":\"Error while inserting the item.\"}";
+			 System.err.println(e.getMessage());
+		
 		}
 		return output;
 	}
+	
+	
+
 	public String updateSession(String nic,String specialality,String doctor,String date,String time,String hospital)
 	{
 		String output="";
@@ -120,34 +142,40 @@ public class Appointment {
 					pStatement.setString(3, doctor);
 					pStatement.setString(4, date);
 					pStatement.setString(5, time);
-					pStatement.setString(6, hospital);	
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+					pStatement.setString(6, hospital);					
 					
 					pStatement.execute();
 					connection.close();
 					System.out.print("updated");
 					output="updated successfully";
+					String newDOC = readSession();
+					output = "{\"status\":\"success\", \"data\": \"" +newDOC + "\"}"; 
 		}
 		catch (Exception e) {
 			// TODO: handle exception
 			System.out.print("not updated");
-			output="error while updating the appointment";
-			System.err.println(e.getMessage());
+			output="error while updating the Doctor";
+			output = "{\"status\":\"error\", \"data\":\"Error while inserting the item.\"}";
+			 System.err.println(e.getMessage());
 		}
 		return output;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public String readSession()
 	{
 		String output= "";
@@ -195,12 +223,18 @@ public class Appointment {
 				output += "<td>" + doctor + "</td>"; 
 				output += "<td>" + date + "</td>"; 
 				output += "<td>" + time + "</td>"; 
-				output += "<td>" + hospital + "</td>"; 
-				output += "<td><input name=\"btnUpdate\" id=\"btnUpdate\" type=\"button\" value=\"Update\" class=\"btnUpdate btn btn-secondary\"></td>";	
-				output += "<td><form method=\"post\" action=\"Appointment.jsp\">"
-				 +"<input name=\"btnRemove\" type=\"submit\" value=\"Remove\" class=\"btn btn-danger\">"
-				 +"<input name=\"hidItemIDDelete\" type=\"hidden\" value=\"" + nic + "\">" + "</form></td></tr>"; 
+				output += "<td>" + hospital + "</td>";
 				
+				
+				
+				output += "<td><input name='btnUpdate' type='button' value='Update' class='btnUpdate btn btn-secondary'</td>"
+						+ "<td><input name='btnRemove' type='button'"
+						+ "value='Remove' class='btnRemove btn btn-danger' data-docid='"
+						+ nic + "'>" + "</td></tr>";
+				
+				
+				
+
 				//-------------------------------------------------------
 				
 			

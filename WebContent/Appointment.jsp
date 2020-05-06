@@ -1,42 +1,6 @@
 <%@page import="AppointmentModel.Appointment"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	if (request.getParameter("hidItemIDDelete") != null) {
-		Appointment itemObject = new Appointment();
-		String stsMsg = itemObject.deleteSession(request.getParameter("hidItemIDDelete"));
-		session.setAttribute("statusMsg", stsMsg);
-		
-	}
-
-	if (request.getParameter("hidItemIDSave") == "") {
-		Appointment reg = new Appointment();
-		//reg.connect();
-		String stsMsg = reg.addSession(request.getParameter("nic"), request.getParameter("doc_spec"),
-		request.getParameter("doctor"), request.getParameter("date"),
-		request.getParameter("time"), request.getParameter("hospital"));
-		session.setAttribute("statusMsg", stsMsg);
-		//response.sendRedirect("loginGui.jsp");
-		
-	}
-	else{
-		Appointment update = new Appointment();
-		//app.connect();
-		String stsMsg = update.updateSession(request.getParameter("nic"), request.getParameter("doc_spec"),
-				request.getParameter("doctor"), request.getParameter("date"),
-				request.getParameter("time"), request.getParameter("hospital"));
-		session.setAttribute("statusMsg", stsMsg);
-		//response.sendRedirect("patient.jsp");
-		
-	}
-	if (request.getParameter("hidItemIDDelete") != null) {
-		Appointment itemObject = new Appointment();
-		String stsMsg = itemObject.deleteSession(request.getParameter("hidItemIDDelete"));
-		session.setAttribute("statusMsg", stsMsg);
-	}
-%>
-
-
 
 
 <!DOCTYPE html>

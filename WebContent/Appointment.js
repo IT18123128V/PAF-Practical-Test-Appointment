@@ -1,33 +1,100 @@
-$(document).ready(function()
-{
-if ($("#alertSuccess").text().trim() == "")
- {
- $("#alertSuccess").hide();
- }
- $("#alertError").hide();
+//hide alert
+$(document).ready(function() {
+
+	$("#alertSuccess").hide();
+	$("#alertError").hide();
+	$("#hidItemIDSave").val("");
+	$("#DOC")[0].reset();
 });
-// SAVE ============================================
-$(document).on("click", "#btnSave", function(event)
-{
-	 	
-// Clear alerts---------------------
- $("#alertSuccess").text("");
- $("#alertSuccess").hide(); 
- $("#alertError").text("");
- $("#alertError").hide();
-// Form validation-------------------
-var status = validateItemForm();
-if (status != true)
- {
- $("#alertError").text(status);
- $("#alertError").show();
- return;
- }
-// If valid------------------------
- $("#DOC").submit();
- $("#alertSuccess").text("Record Aded");
- $("#alertSuccess").show();
+
+$(document).on("click", "#btnSave", function(event) {
+
+	// Clear alerts---------------------
+	$("#alertSuccess").text("");
+	$("#alertSuccess").hide();
+	$("#alertError").text("");
+	$("#alertError").hide();
+	// Form validation-------------------
+	var status = validateItemForm();
+	if (status != true) {
+		$("#alertError").text(status);
+		$("#alertError").show();
+		return;
+	}
+	// If valid------------------------
+	var type = ($("#hidItemIDSave").val() == "") ? "POST" : "PUT";
+
+	$.ajax({
+		url : "AppointmentAPI",
+		type : type,
+		data : $("#DOC").serialize(),
+		dataType : "text",
+		complete : function(response, status) {
+			onItemSaveComplete(response.responseText, status);
+		}
+	});
+
 });
+
+function onItemSaveComplete(response, status) {
+	if (status == "success") {
+		var resultSet = JSON.parse(response);
+		if (resultSet.status.trim() == "success") {
+			$("#alertSuccess").text("Successfully saved.");
+			$("#alertSuccess").show();
+			$("#DoctorGrid").html(resultSet.data);
+		} else if (resultSet.status.trim() == "error") {
+			$("#alertError").text(resultSet.data);
+			$("#alertError").show();
+		}
+	} else if (status == "error") {
+		$("#alertError").text("Error while saving.");
+		$("#alertError").show();
+	} else {
+		$("#alertError").text("Unknown error while saving..");
+		$("#alertError").show();
+	}
+	$("#hidItemIDSave").val("");
+	$("#DOC")[0].reset();
+}
+
+$(document).on("click", ".btnRemove", function(event) {
+	$.ajax({
+		url : "AppointmentAPI",
+		type : "DELETE",
+		data : "nic=" + $(this).data("docid"),
+		dataType : "text",
+		complete : function(response, status) {
+			onItemDeleteComplete(response.responseText, status);
+		}
+	});
+});
+
+
+function onItemDeleteComplete(response, status) {
+	if (status == "success") {
+		var resultSet = JSON.parse(response);
+		if (resultSet.status.trim() == "success") {
+			$("#alertSuccess").text("Successfully deleted.");
+			$("#alertSuccess").show();
+			$("#AppointmentGrid").html(resultSet.data);
+		} else if (resultSet.status.trim() == "error") {
+			$("#alertError").text(resultSet.data);
+			$("#alertError").show();
+		}
+	} else if (status == "error") {
+		$("#alertError").text("Error while deleting.");
+		$("#alertError").show();
+	} else {
+		$("#alertError").text("Unknown error while deleting..");
+		$("#alertError").show();
+	}
+}
+
+
+
+
+
 
 // UPDATE==========================================
 $(document).on("click", ".btnUpdate", function(event)
@@ -53,11 +120,27 @@ if ($("#doc_spec").val().trim() == "")
  {
  return "Insert  Doctor Name.";
  } 
-// PRICE-------------------------------
-if ($("#nic").val().trim() == "")
+//NAME
+if ($("#doc_spec").val().trim() == "")
  {
- return "Insert Room No.";
- }
+ return "Insert  Doctor Name.";
+ } 
+//NAME
+if ($("#doc_spec").val().trim() == "")
+ {
+ return "Insert  Doctor Name.";
+ } 
+//NAME
+if ($("#doc_spec").val().trim() == "")
+ {
+ return "Insert  Doctor Name.";
+ } 
+//NAME
+if ($("#doc_spec").val().trim() == "")
+ {
+ return "Insert  Doctor Name.";
+ } 
+
 
 
 return true;
